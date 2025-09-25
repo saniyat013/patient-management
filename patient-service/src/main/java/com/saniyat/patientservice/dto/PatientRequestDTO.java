@@ -1,42 +1,27 @@
-package com.saniyat.patientservice.model;
+package com.saniyat.patientservice.dto;
 
-import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
-import java.time.LocalDate;
-import java.util.UUID;
-
-@Entity
-public class Patient {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
-
-    @NotNull
+public class PatientRequestDTO {
+    @NotBlank
+    @Size(max = 100, message = "Name cannot exceed 100 characters")
     private String name;
 
-    @NotNull
-    @Email
-    @Column(unique = true)
+    @NotBlank
+    @Email(message = "Email should be valid")
     private String email;
 
-    @NotNull
+    @NotBlank(message = "Address is required")
     private String address;
 
-    @NotNull
-    private LocalDate dateOfBirth;
+    @NotBlank(message = "Date of Birth is required")
+    private String dateOfBirth;
 
-    @NotNull
-    private LocalDate registeredDate;
-
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
+    @NotNull(message = "Registered Date is required")
+    private String registeredDate;
 
     public String getName() {
         return name;
@@ -62,19 +47,19 @@ public class Patient {
         this.address = address;
     }
 
-    public LocalDate getDateOfBirth() {
+    public String getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(LocalDate dateOfBirth) {
+    public void setDateOfBirth(String dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public LocalDate getRegisteredDate() {
+    public String getRegisteredDate() {
         return registeredDate;
     }
 
-    public void setRegisteredDate(LocalDate registeredDate) {
+    public void setRegisteredDate(String registeredDate) {
         this.registeredDate = registeredDate;
     }
 }

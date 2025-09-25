@@ -1,5 +1,6 @@
 package com.saniyat.patientservice.service.impl;
 
+import com.saniyat.patientservice.dto.PatientRequestDTO;
 import com.saniyat.patientservice.dto.PatientResponseDTO;
 import com.saniyat.patientservice.mapper.PatientMapper;
 import com.saniyat.patientservice.model.Patient;
@@ -24,5 +25,11 @@ public class PatientServiceImpl implements PatientService {
 //        List<PatientResponseDTO> patientResponseDTOS = patients.stream()
 //                .map(patient -> PatientMapper.toDTO(patient)).toList();
         return patients.stream().map(PatientMapper::toDTO).toList();
+    }
+
+    @Override
+    public PatientResponseDTO createPatient(PatientRequestDTO patientRequestDTO) {
+        Patient newPatient = patientRepository.save(PatientMapper.toModel(patientRequestDTO));
+        return PatientMapper.toDTO(newPatient);
     }
 }
