@@ -8,8 +8,7 @@ import java.util.UUID;
 
 public interface PatientService {
 	public List<PatientResponseDTO> getAllPatients();
-
 	public PatientResponseDTO createPatient(PatientRequestDTO patientRequestDTO);
-
 	public PatientResponseDTO updatePatient(PatientRequestDTO patientRequestDTO, UUID id);
+	public void deletePatient(UUID id);
 }
