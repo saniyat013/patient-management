@@ -10,7 +10,7 @@ COPY src ./src
 
 RUN ./gradlew build -x test
 
-FROM openjdk:21-jdk AS runner
+FROM openjdk:26-ea-21-jdk-slim AS runner
 
 WORKDIR /app
 

@@ -55,14 +55,16 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.13")
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.8")
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+    implementation("org.springframework.kafka:spring-kafka")
 
     // GRPC
     implementation 'io.grpc:grpc-netty-shaded:1.69.0'
     implementation 'io.grpc:grpc-protobuf:1.69.0'
     implementation 'io.grpc:grpc-stub:1.69.0'
-    implementation 'net.devh:grpc-spring-boot-starter:3.1.0.RELEASE'
+    implementation 'net.devh:grpc-client-spring-boot-starter:3.1.0.RELEASE'
     implementation 'com.google.protobuf:protobuf-java:4.29.1'
 
     compileOnly 'org.apache.tomcat:annotations-api:6.0.53'
