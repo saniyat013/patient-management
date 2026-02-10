@@ -1,0 +1,64 @@
+buildscript {
+    ext {
+        protobufVersion = '3.23.4'
+        protobufPluginVersion = '0.8.18'
+        grpcVersion = '1.58.0'
+    }
+}
+
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.5.6'
+    id 'io.spring.dependency-management' version '1.1.7'
+    id 'com.google.protobuf' version '0.9.4'
+}
+
+group = 'com.saniyat'
+version = '0.0.1-SNAPSHOT'
+description = 'analytics-service'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+protobuf {
+    protoc {
+        artifact = "com.google.protobuf:protoc:${protobufVersion}"
+    }
+    plugins {
+        grpc {
+            artifact = "io.grpc:protoc-gen-grpc-java:${grpcVersion}"
+        }
+    }
+    generateProtoTasks {
+        all().each { task ->
+            task.plugins {
+                grpc {}
+            }
+            // Set output directory for generated sources
+            task.builtins {
+                java {
+                    outputSubDir = "java"
+                }
+            }
+        }
+    }
+}
+
+dependencies {
+    implementation("org.springframework.kafka:spring-kafka")
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'com.google.protobuf:protobuf-java:4.29.1'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
