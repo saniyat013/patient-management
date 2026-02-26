@@ -2,7 +2,7 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel>
-      <module name="auth-service.test" target="21" />
+      <module name="api-gateway.test" target="21" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
